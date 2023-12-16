@@ -1,7 +1,9 @@
 package oncall.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -10,6 +12,7 @@ public class Validator {
         validateLength(inputParts);
         int month = validateMonth(inputParts[0]);
         String startDay = validateStartDay(inputParts[1]);
+
     }
 
     private static String[] splitInput(String input) {
@@ -42,5 +45,35 @@ public class Validator {
             throw new IllegalArgumentException();
         }
         return startDay;
+    }
+
+    public static void validateWeekdayEmergencyWorker(String input) {
+        String[] workers = splitInput(input);
+        validateTotalWorkers(workers);
+
+        Set<String> workerSet = new HashSet<>();
+
+        for (String worker : workers) {
+            validateWorkerNickname(worker);
+            checkDuplicateWorker(worker, workerSet);
+        }
+    }
+
+    private static void validateTotalWorkers(String[] workers) {
+        if (workers.length < 5 || workers.length > 35) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateWorkerNickname(String worker) {
+        if (worker.trim().length() > 5) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkDuplicateWorker(String worker, Set<String> workerSet) {
+        if (!workerSet.add(worker.trim())) {
+            throw new IllegalArgumentException();
+        }
     }
 }

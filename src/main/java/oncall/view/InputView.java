@@ -1,6 +1,6 @@
 package oncall.view;
 
-import static oncall.util.ExceptionMessage.INVALID_MONTH_START_DAY;
+import static oncall.util.ExceptionMessage.INVALID_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import oncall.util.Validator;
@@ -37,6 +37,28 @@ public class InputView {
     }
 
     public static String getValidatedMonthStartDay() {
-        return getValidatedInput(InputView::readMonthStartDay, Validator::validateMonthStartDay, INVALID_MONTH_START_DAY.getMessage());
+        return getValidatedInput(InputView::readMonthStartDay, Validator::validateMonthStartDay, INVALID_INPUT.getMessage());
     }
+
+    public static String readWeekdayEmergencyWorker() {
+        OutputView.print("평일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
+        return Console.readLine();
+    }
+
+    public static String getValidatedWeekdayEmergencyWorker() {
+        return getValidatedInput(InputView::readWeekdayEmergencyWorker, Validator::validateWeekdayEmergencyWorker,
+                INVALID_INPUT.getMessage());
+    }
+
+
+
+//    public static String readWeekdayEmergencyWorker() {
+//        System.out.println("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
+//        return Console.readLine();
+//    }
+//
+//    public static String getValidatedWeekdayEmergencyWorker() {
+//        return getValidatedInput(InputView::readWeekdayEmergencyWorker, Validator::validateWeekdayEmergencyWorker,
+//                INVALID_INPUT.getMessage());
+//    }
 }
