@@ -1,11 +1,21 @@
 package oncall.controller;
 
+import oncall.model.Assignment;
+import oncall.model.EmergencyWorker;
+import oncall.model.MonthStartDay;
 import oncall.view.InputView;
 
 public class MainController {
     public void execute() {
-        String MonthStartDay = InputView.getValidatedMonthStartDay();
-        String weekdayEmergencyWorker = InputView.getValidatedWeekdayEmergencyWorker();
-        String weekendEmergencyWorker = InputView.getValidatedWeekendEmergencyWorker();
+        MonthStartDay monthStartDay = new MonthStartDay();
+        monthStartDay.setMonthStartDay(InputView.getValidatedMonthStartDay());
+        monthStartDay.generateWeekdayList();
+
+        EmergencyWorker emergencyWorker = new EmergencyWorker();
+        emergencyWorker.setWeekdayEmergencyWorker(InputView.getValidatedWeekdayEmergencyWorker());
+        emergencyWorker.setWeekendEmergencyWorker(InputView.getValidatedWeekendEmergencyWorker());
+
+        Assignment assignment = new Assignment();
+        assignment.assignInOrder();
     }
 }
