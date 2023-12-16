@@ -74,6 +74,10 @@ public class MonthStartDay {
         return holidays.containsKey(key);
     }
 
+    public static boolean getIsWeekdayExceptHoliday(int day) {
+        return !(weekdays.get((day-1) % 7).equals("토") || weekdays.get((day-1) % 7).equals("일"));
+    }
+
     public static int getMonth() {
         return month;
     }

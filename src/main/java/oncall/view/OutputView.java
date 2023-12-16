@@ -11,8 +11,14 @@ public class OutputView {
         int daysInMonth = MonthStartDay.getDaysInMonth();
         List<String> weekDays = MonthStartDay.getWeekDays();
         List<String> assignmentResult = Assignment.getAssignmentResult();
-        for(int i=1; i<=daysInMonth; i++) {
-            println(month + "월" + " " + i + "일" + " " + weekDays.get((i-1)%7) + " " + assignmentResult.get(i-1));
+        for (int i = 1; i <= daysInMonth; i++) {
+            String dayString = month + "월 " + i + "일 " + weekDays.get((i - 1) % 7);
+            StringBuilder output = new StringBuilder(dayString);
+            if (MonthStartDay.getIsWeekdayExceptHoliday(i) && MonthStartDay.isHoliday(i)) {
+                output.append("(휴일)");
+            }
+            output.append(" " + assignmentResult.get(i - 1));
+            println(output.toString());
         }
     }
 
