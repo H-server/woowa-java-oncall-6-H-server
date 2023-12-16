@@ -8,8 +8,6 @@ import java.util.List;
 public class EmergencyWorker {
     private static List<String> weekdayEmergencyWorker;
     private static List<String> weekendEmergencyWorker;
-    private static int weekdayWorkerCount = -1;
-    private static int weekendWorkerCount = -1;
 
     public void setWeekdayEmergencyWorker(String input) {
         weekdayEmergencyWorker = Arrays.asList(splitByComma(input));
@@ -19,13 +17,11 @@ public class EmergencyWorker {
         weekendEmergencyWorker = Arrays.asList(splitByComma(input));
     }
 
-    public static String getWeekdayEmergencyWorker() {
-        weekdayWorkerCount++;
-        return weekdayEmergencyWorker.get(weekdayWorkerCount % weekdayEmergencyWorker.size());
+    public static String getWeekdayEmergencyWorker(int day) {
+        return weekdayEmergencyWorker.get(day % weekdayEmergencyWorker.size() - 1);
     }
 
-    public static String getWeekendEmergencyWorker() {
-        weekendWorkerCount++;
-        return weekendEmergencyWorker.get(weekendWorkerCount % weekendEmergencyWorker.size());
+    public static String getWeekendEmergencyWorker(int day) {
+        return weekendEmergencyWorker.get(day % weekendEmergencyWorker.size() - 1);
     }
 }
