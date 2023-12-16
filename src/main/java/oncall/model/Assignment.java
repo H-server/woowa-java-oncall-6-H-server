@@ -31,18 +31,36 @@ public class Assignment {
 
     private void handleConsecutiveWork(String worker) {
         if (!assignmentResult.isEmpty() && assignmentResult.get(assignmentResult.size() - 1).equals(worker)) {
-            if(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1)) {
-                String nextWorker = EmergencyWorker.getWeekendEmergencyWorker();
-                assignmentResult.add(nextWorker);
-                day++;
-                EmergencyWorker.plusWeekendWorkerCount();
-                // 일반적인 경우 -> 순서 바꿔서 저장
-            }
-//            if(!(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1))) {
-//                // 특수한 경우 -> 그 해당하는 리스트에서 다음 근무자랑 변경 후 저장
-//            }
+            worker = generalCase(worker);
+            worker = specialCase(worker);
         }
         assignmentResult.add(worker);
+    }
+
+    private String generalCase(String worker) {
+        if(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1)) {
+            String nextWorker = EmergencyWorker.getWeekendEmergencyWorker();
+            assignmentResult.add(nextWorker);
+            day++;
+            EmergencyWorker.plusWeekendWorkerCount();
+        }
+        return worker;
+    }
+
+    private String specialCase(String worker) {
+        if(!(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1))) {
+            if(!MonthStartDay.getIsWeekday(day)) {
+                String nextWeekendWorker = EmergencyWorker.getWeekendEmergencyWorker();
+                EmergencyWorker.changeWeekendWorker(worker, nextWeekendWorker);
+                worker = EmergencyWorker.getWeekendEmergencyWorker();
+            }
+            if(MonthStartDay.getIsWeekday(day)) {
+                String nextWeekdayWorker = EmergencyWorker.getWeekdayEmergencyWorker();
+                EmergencyWorker.changeWeekendWorker(worker, nextWeekdayWorker);
+                worker = EmergencyWorker.getWeekdayEmergencyWorker();
+            }
+        }
+        return worker;
     }
 
     public static List<String> getAssignmentResult() {

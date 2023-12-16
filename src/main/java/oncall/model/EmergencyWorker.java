@@ -3,6 +3,7 @@ package oncall.model;
 import static oncall.util.Util.splitByComma;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class EmergencyWorker {
@@ -29,7 +30,27 @@ public class EmergencyWorker {
         return weekendEmergencyWorker.get(weekendWorkerCount % weekendEmergencyWorker.size());
     }
 
+    public static void changeWeekdayWorker(String i, String j) {
+        Collections.swap(weekdayEmergencyWorker, weekdayEmergencyWorker.indexOf(i), weekdayEmergencyWorker.indexOf(j));
+        minusWeekendWorkerCount();
+        minusWeekendWorkerCount();
+    }
+
+    public static void changeWeekendWorker(String i, String j) {
+        Collections.swap(weekendEmergencyWorker, weekendEmergencyWorker.indexOf(i), weekendEmergencyWorker.indexOf(j));
+        minusWeekdayWorkerCount();
+        minusWeekdayWorkerCount();
+    }
+
     public static void plusWeekendWorkerCount() {
         weekendWorkerCount++;
+    }
+
+    public static void minusWeekendWorkerCount() {
+        weekendWorkerCount--;
+    }
+
+    public static void minusWeekdayWorkerCount() {
+        weekendWorkerCount--;
     }
 }

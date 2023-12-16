@@ -6,20 +6,22 @@ import oncall.model.MonthStartDay;
 
 public class OutputView {
 
-    public static void printMonthlySchedule() {
+    public static String printMonthlySchedule() {
         int month = MonthStartDay.getMonth();
         int daysInMonth = MonthStartDay.getDaysInMonth();
         List<String> weekDays = MonthStartDay.getWeekDays();
         List<String> assignmentResult = Assignment.getAssignmentResult();
+        StringBuilder output = new StringBuilder();
         for (int i = 1; i <= daysInMonth; i++) {
             String dayString = month + "월 " + i + "일 " + weekDays.get((i - 1) % 7);
-            StringBuilder output = new StringBuilder(dayString);
+            output = new StringBuilder(dayString);
             if (MonthStartDay.getIsWeekdayExceptHoliday(i) && MonthStartDay.isHoliday(i)) {
                 output.append("(휴일)");
             }
             output.append(" " + assignmentResult.get(i - 1));
             println(output.toString());
         }
+        return output.toString();
     }
 
     public static void printError(Exception error) {
