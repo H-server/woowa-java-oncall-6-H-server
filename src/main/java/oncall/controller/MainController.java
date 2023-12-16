@@ -6,6 +6,6 @@ public class MainController {
     public void execute() {
         String MonthStartDay = InputView.getValidatedMonthStartDay();
         String weekdayEmergencyWorker = InputView.getValidatedWeekdayEmergencyWorker();
-//        String weekendEmergencyWorker = InputView.getValidatedWeekdayEmergencyWorker();
+        String weekendEmergencyWorker = InputView.getValidatedWeekendEmergencyWorker();
     }
 }

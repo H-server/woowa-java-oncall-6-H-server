@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
+    private static Set<String> weekdayEmergencyWorkers = new HashSet<>();
+    private static Set<String> weekendEmergencyWorkers = new HashSet<>();
 
     public static void validateMonthStartDay(String input) {
         String[] inputParts = splitInput(input);
@@ -57,6 +59,7 @@ public class Validator {
             validateWorkerNickname(worker);
             checkDuplicateWorker(worker, workerSet);
         }
+        weekdayEmergencyWorkers = workerSet;
     }
 
     private static void validateTotalWorkers(String[] workers) {
@@ -73,6 +76,24 @@ public class Validator {
 
     private static void checkDuplicateWorker(String worker, Set<String> workerSet) {
         if (!workerSet.add(worker.trim())) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateWeekendEmergencyWorker(String input) {
+        String[] workers = splitInput(input);
+        validateTotalWorkers(workers);
+        Set<String> workerSet = new HashSet<>();
+        for (String worker : workers) {
+            validateWorkerNickname(worker);
+            checkDuplicateWorker(worker, workerSet);
+        }
+        weekendEmergencyWorkers = workerSet;
+        validateWorkerListsConsistency();
+    }
+
+    private static void validateWorkerListsConsistency() {
+        if (!(weekdayEmergencyWorkers.equals(weekendEmergencyWorkers))) {
             throw new IllegalArgumentException();
         }
     }

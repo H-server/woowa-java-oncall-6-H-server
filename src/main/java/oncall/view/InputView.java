@@ -50,15 +50,13 @@ public class InputView {
                 INVALID_INPUT.getMessage());
     }
 
+    public static String readWeekendEmergencyWorker() {
+        OutputView.print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
+        return Console.readLine();
+    }
 
-
-//    public static String readWeekdayEmergencyWorker() {
-//        System.out.println("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
-//        return Console.readLine();
-//    }
-//
-//    public static String getValidatedWeekdayEmergencyWorker() {
-//        return getValidatedInput(InputView::readWeekdayEmergencyWorker, Validator::validateWeekdayEmergencyWorker,
-//                INVALID_INPUT.getMessage());
-//    }
+    public static String getValidatedWeekendEmergencyWorker() {
+        return getValidatedInput(InputView::readWeekendEmergencyWorker, Validator::validateWeekendEmergencyWorker,
+                INVALID_INPUT.getMessage());
+    }
 }
