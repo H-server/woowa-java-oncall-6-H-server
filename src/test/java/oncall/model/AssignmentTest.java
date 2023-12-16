@@ -22,7 +22,21 @@ class AssignmentTest {
         Assignment assignment = new Assignment();
         assignment.assignInOrder();
         OutputView.printMonthlySchedule();
+    }
 
+    @Test
+    void 평일_휴일_평일인_경우() {
+        MonthStartDay monthStartDay = new MonthStartDay();
+        monthStartDay.setMonthStartDay("5,금");
+        monthStartDay.generateWeekdayList();
+
+        EmergencyWorker emergencyWorker = new EmergencyWorker();
+        emergencyWorker.setWeekdayEmergencyWorker("준팍,수아,솔로스타,고니,루루,글로,도밥,우코,슬링키,참새,도리");
+        emergencyWorker.setWeekendEmergencyWorker("고니,루루,솔로스타,수아,우코,슬링키,참새,글로,준팍,도밥,도리");
+
+        Assignment assignment = new Assignment();
+        assignment.assignInOrder();
+        OutputView.printMonthlySchedule();
     }
 
 }

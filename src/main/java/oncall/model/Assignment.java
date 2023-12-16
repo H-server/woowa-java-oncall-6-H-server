@@ -56,7 +56,7 @@ public class Assignment {
             }
             if(MonthStartDay.getIsWeekday(day)) {
                 String nextWeekdayWorker = EmergencyWorker.getWeekdayEmergencyWorker();
-                EmergencyWorker.changeWeekendWorker(worker, nextWeekdayWorker);
+                EmergencyWorker.changeWeekdayWorker(worker, nextWeekdayWorker);
                 worker = EmergencyWorker.getWeekdayEmergencyWorker();
             }
         }
