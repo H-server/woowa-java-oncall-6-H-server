@@ -18,10 +18,10 @@ public class EmergencyWorker {
     }
 
     public static String getWeekdayEmergencyWorker(int day) {
-        return weekdayEmergencyWorker.get(day % weekdayEmergencyWorker.size() - 1);
+        return weekdayEmergencyWorker.get((day-1) % weekdayEmergencyWorker.size());
     }
 
     public static String getWeekendEmergencyWorker(int day) {
-        return weekendEmergencyWorker.get(day % weekendEmergencyWorker.size() - 1);
+        return weekendEmergencyWorker.get((day-1) % weekendEmergencyWorker.size());
     }
 }

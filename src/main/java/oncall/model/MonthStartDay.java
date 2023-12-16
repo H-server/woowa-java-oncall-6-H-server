@@ -77,4 +77,12 @@ public class MonthStartDay {
         String key = String.format("%d-%d", month, day);
         return holidays.containsKey(key);
     }
+
+    public static int getMonth() {
+        return month;
+    }
+
+    public static List<String> getWeekDays() {
+        return weekdays;
+    }
 }

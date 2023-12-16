@@ -4,6 +4,7 @@ import oncall.model.Assignment;
 import oncall.model.EmergencyWorker;
 import oncall.model.MonthStartDay;
 import oncall.view.InputView;
+import oncall.view.OutputView;
 
 public class MainController {
     public void execute() {
@@ -17,5 +18,6 @@ public class MainController {
 
         Assignment assignment = new Assignment();
         assignment.assignInOrder();
+        OutputView.printMonthlySchedule();
     }
 }

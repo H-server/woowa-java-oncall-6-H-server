@@ -15,19 +15,19 @@ public class Assignment {
             if(!MonthStartDay.getIsWeekday(day)) {
                 assignWeekendEmergencyWorker();
             }
+            day++;
         }
-        day++;
-        System.out.println(assignmentResult);
-        System.out.println(assignmentResult.size());
     }
 
     private void assignWeekdayEmergencyWorker() {
         String worker = EmergencyWorker.getWeekdayEmergencyWorker(day);
+        assignmentResult.add(worker);
         handleConsecutiveWork(worker);
     }
 
     private void assignWeekendEmergencyWorker() {
         String worker = EmergencyWorker.getWeekendEmergencyWorker(day);
+        assignmentResult.add(worker);
         handleConsecutiveWork(worker);
     }
 
@@ -45,5 +45,9 @@ public class Assignment {
 //            }
         }
         assignmentResult.add(worker);
+    }
+
+    public static List<String> getAssignmentResult() {
+        return assignmentResult;
     }
 }
