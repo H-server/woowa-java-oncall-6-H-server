@@ -20,24 +20,22 @@ public class Assignment {
     }
 
     private void assignWeekdayEmergencyWorker() {
-        String worker = EmergencyWorker.getWeekdayEmergencyWorker(day);
-        assignmentResult.add(worker);
+        String worker = EmergencyWorker.getWeekdayEmergencyWorker();
         handleConsecutiveWork(worker);
     }
 
     private void assignWeekendEmergencyWorker() {
-        String worker = EmergencyWorker.getWeekendEmergencyWorker(day);
-        assignmentResult.add(worker);
+        String worker = EmergencyWorker.getWeekendEmergencyWorker();
         handleConsecutiveWork(worker);
     }
 
     private void handleConsecutiveWork(String worker) {
         if (!assignmentResult.isEmpty() && assignmentResult.get(assignmentResult.size() - 1).equals(worker)) {
             if(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1)) {
-                String nextWorker = EmergencyWorker.getWeekendEmergencyWorker(day+1);
+                String nextWorker = EmergencyWorker.getWeekendEmergencyWorker();
                 assignmentResult.add(nextWorker);
-                assignmentResult.add(worker);
                 day++;
+                EmergencyWorker.plusWeekendWorkerCount();
                 // 일반적인 경우 -> 순서 바꿔서 저장
             }
 //            if(!(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1))) {

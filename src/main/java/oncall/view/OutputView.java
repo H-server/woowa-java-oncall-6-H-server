@@ -12,7 +12,7 @@ public class OutputView {
         List<String> weekDays = MonthStartDay.getWeekDays();
         List<String> assignmentResult = Assignment.getAssignmentResult();
         for(int i=1; i<=daysInMonth; i++) {
-            println(month + "월" + " " + i + "일" + " " + weekDays.get((i-1)%7) + " " + assignmentResult.get((i-1)%7));
+            println(month + "월" + " " + i + "일" + " " + weekDays.get((i-1)%7) + " " + assignmentResult.get(i-1));
         }
     }
 

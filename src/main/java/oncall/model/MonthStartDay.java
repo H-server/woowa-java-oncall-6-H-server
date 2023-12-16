@@ -41,10 +41,6 @@ public class MonthStartDay {
         holidays.put("12-25", "성탄절");
     }
 
-    public static boolean isHoliday(String day) {
-        return holidays.containsKey(day);
-    }
-
     public void setMonthStartDay(String input) {
         String[] monthStartDay = splitByComma(input);
         month = Integer.parseInt(monthStartDay[0]);
@@ -70,7 +66,7 @@ public class MonthStartDay {
         if(isHoliday(day)) {
             return false;
         }
-        return !(weekdays.get(day % 7).equals("토") || weekdays.get(day % 7).equals("일"));
+        return !(weekdays.get((day-1) % 7).equals("토") || weekdays.get((day-1) % 7).equals("일"));
     }
 
     public static boolean isHoliday(int day) {
