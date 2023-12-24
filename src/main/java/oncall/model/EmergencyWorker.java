@@ -32,7 +32,7 @@ public class EmergencyWorker {
 
     public static void changeWeekdayWorker(String i, String j) {
         Collections.swap(weekdayEmergencyWorker, weekdayEmergencyWorker.indexOf(i), weekdayEmergencyWorker.indexOf(j));
-        minusWeekendWorkerCount();
+        minusWeekendWorkerCount(); //이거 떄문인듯
         minusWeekendWorkerCount();
     }
 
@@ -44,6 +44,10 @@ public class EmergencyWorker {
 
     public static void plusWeekendWorkerCount() {
         weekendWorkerCount++;
+    }
+
+    public static void plusWeekdayWorkerCount() {
+        weekdayWorkerCount++;
     }
 
     public static void minusWeekendWorkerCount() {

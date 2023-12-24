@@ -7,10 +7,11 @@ import oncall.model.MonthStartDay;
 public class OutputView {
 
     public static String printMonthlySchedule() {
+        Assignment assignment = new Assignment();
         int month = MonthStartDay.getMonth();
         int daysInMonth = MonthStartDay.getDaysInMonth();
         List<String> weekDays = MonthStartDay.getWeekDays();
-        List<String> assignmentResult = Assignment.getAssignmentResult();
+        List<String> assignmentResult = assignment.getAssignmentResult();
         StringBuilder output = new StringBuilder();
         for (int i = 1; i <= daysInMonth; i++) {
             String dayString = month + "월 " + i + "일 " + weekDays.get((i - 1) % 7);
