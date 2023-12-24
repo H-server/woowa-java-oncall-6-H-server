@@ -73,6 +73,22 @@ class AssignmentTest {
         assertEquals(assignment.getAssignmentResult().subList(0, 10), workerActualList);
     }
 
+    @Test
+    void 특수한_경우_휴일_평일_휴일_다시_연속_근무자가_생긴_경우() {
+        MonthStartDay monthStartDay = new MonthStartDay();
+        EmergencyWorker emergencyWorker = new EmergencyWorker();
+        Assignment assignment = new Assignment();
+        List<String> workerActualList = Arrays.asList("수아", "준팍", "수아", "도밥", "고니", "루루", "글로", "루루", "고니");
+        monthStartDay.setMonthStartDay("5,일");
+        monthStartDay.generateWeekdayList();
+        emergencyWorker.setWeekdayEmergencyWorker("준팍,수아,도밥,고니,루루,글로,솔로스타,우코,슬링키,참새,도리");
+        emergencyWorker.setWeekendEmergencyWorker("수아,고니,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥");
+
+        assignment.assignInOrder();
+        OutputView.printMonthlySchedule();
+        assertEquals(assignment.getAssignmentResult().subList(0, 9), workerActualList);
+    }
+
     // 테스트 케이스 먼저
     // 1. 일반적인 경우 1
     // 2. 일반적인 경우 2
