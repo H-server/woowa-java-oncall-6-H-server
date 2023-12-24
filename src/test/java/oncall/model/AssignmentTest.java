@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import oncall.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -68,6 +69,7 @@ class AssignmentTest {
         emergencyWorker.setWeekendEmergencyWorker("고니,도리,솔로스타,수아,우코,슬링키,참새,글로,준팍,도밥,루루");
 
         assignment.assignInOrder();
+        OutputView.printMonthlySchedule();
         assertEquals(assignment.getAssignmentResult().subList(0, 10), workerActualList);
     }
 
