@@ -32,14 +32,15 @@ public class EmergencyWorker {
 
     public static void changeWeekdayWorker(String i, String j) {
         Collections.swap(weekdayEmergencyWorker, weekdayEmergencyWorker.indexOf(i), weekdayEmergencyWorker.indexOf(j));
-        minusWeekendWorkerCount(); //이거 떄문인듯
-        minusWeekendWorkerCount();
+        //이거 떄문인듯 day와 end를 혼동함. 실전에서의 실수. 와 이것도 한끝차이로 틀렸네...
+        minusWeekdayWorkerCount();
+        minusWeekdayWorkerCount();
     }
 
     public static void changeWeekendWorker(String i, String j) {
         Collections.swap(weekendEmergencyWorker, weekendEmergencyWorker.indexOf(i), weekendEmergencyWorker.indexOf(j));
-        minusWeekdayWorkerCount();
-        minusWeekdayWorkerCount();
+        minusWeekendWorkerCount();
+        minusWeekendWorkerCount();
     }
 
     public static void plusWeekendWorkerCount() {
@@ -55,6 +56,6 @@ public class EmergencyWorker {
     }
 
     public static void minusWeekdayWorkerCount() {
-        weekendWorkerCount--;
+        weekdayWorkerCount--;
     }
 }

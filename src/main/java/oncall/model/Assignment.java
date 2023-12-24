@@ -57,12 +57,12 @@ public class Assignment {
 
     private String specialCase(String worker) {
         if(!(MonthStartDay.getIsWeekday(day) == MonthStartDay.getIsWeekday(day+1))) {
-            if(!MonthStartDay.getIsWeekday(day)) {
+            if(!MonthStartDay.getIsWeekday(day)) { // 휴일
                 String nextWeekendWorker = EmergencyWorker.getWeekendEmergencyWorker();
                 EmergencyWorker.changeWeekendWorker(worker, nextWeekendWorker);
                 worker = EmergencyWorker.getWeekendEmergencyWorker();
             }
-            if(MonthStartDay.getIsWeekday(day)) { // 평일
+            if(MonthStartDay.getIsWeekday(day)) { // 평일 이 경우를 리팩토링해야함
                 String nextWeekdayWorker = EmergencyWorker.getWeekdayEmergencyWorker();
                 EmergencyWorker.changeWeekdayWorker(worker, nextWeekdayWorker);
                 worker = EmergencyWorker.getWeekdayEmergencyWorker();
